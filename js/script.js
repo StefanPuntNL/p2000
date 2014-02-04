@@ -1,8 +1,9 @@
 $(document).ready(function() {
-	// Accepts a url and a callback function to run.
+	    var startUrl = ' http://www.alarmeringen.nl/feeds/all.rss';
 		var url = 'http://www.alarmeringen.nl/feeds/';
-			url += '/region/kennemerland.rss';
+			
 
+        // Accepts a url and a callback function to run.
 		function requestCrossDomain(site, callback) {
  
 		    // If no url was passed, exit.
@@ -49,6 +50,7 @@ $(document).ready(function() {
         		var xml = doc;
  
         		$(xml).find('item').each(function () {
+
             		if (num <= limit) {
             			var type = '';
             			var classType = '';
@@ -77,7 +79,7 @@ $(document).ready(function() {
                 			type = 'politie';
                 		}
                 		
-                		$('tbody').append('<tr><td><img src="img/'+type+'.png" alt="'+type+'"/></td><td>'+d+'-'+m+'-'+y+'</td><td>'+h+':'+min+'</td><td>'+title+'</td><td>'+description+'</td></tr>');
+                		$('tbody').append('<tr class="alarm-item"><td><img src="img/'+type+'.png" alt="'+type+'"/></td><td>'+d+'-'+m+'-'+y+'</td><td>'+h+':'+min+'</td><td>'+title+'</td><td>'+description+'</td></tr>');
 
                 		num++;
             		}
@@ -85,13 +87,17 @@ $(document).ready(function() {
     		});
 		}
 
-		readFeed(15, url);
+		readFeed(15, startUrl);
 
         $('#filter').click(function(e) {
             e.preventDefault();
             
             if($('#regio').val() == 'all' && $('#discipline').val() == 'all') {
-                console.log('all.rss');
+                readFeed(15, startUrl);
+            } else if($('#regio').val() == 'all' && $('#discipline').val() !== 'all') {
+                var discipline = $('#discipline').val();
+                url += 'discipline/'+ discipline + '.rss';
+                readFeed(15, url);
             }
         });
 
