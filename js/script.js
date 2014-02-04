@@ -33,6 +33,13 @@ $(document).ready(function() {
 
 
 		function readFeed(limit, url) {
+            $('.alarm-item').animate(
+                {
+                    opacity: 0
+                }, 1000, function() {
+                    $(this).remove();
+            });
+
     		requestCrossDomain(url, function (result) {
         		var num = 1;
 
@@ -93,11 +100,31 @@ $(document).ready(function() {
             e.preventDefault();
             
             if($('#regio').val() == 'all' && $('#discipline').val() == 'all') {
+
                 readFeed(15, startUrl);
+
+            } else if($('#regio').val() !== 'all' && $('#discipline').val() == 'all') {
+
+                var regio = $('#regio').val();
+                url += 'region/'+ regio + '.rss';
+                readFeed(15, url);
+                url = 'http://www.alarmeringen.nl/feeds/';
+
             } else if($('#regio').val() == 'all' && $('#discipline').val() !== 'all') {
+
                 var discipline = $('#discipline').val();
                 url += 'discipline/'+ discipline + '.rss';
                 readFeed(15, url);
+                url = 'http://www.alarmeringen.nl/feeds/';
+
+            } else if($('#regio').val() !== 'all' && $('#discipline').val() !== 'all') {
+
+                var regio = $('#regio').val();
+                var discipline = $('#discipline').val();
+                url += 'region/'+ regio + '/'+ discipline +'.rss';
+                readFeed(15, url);
+                url = 'http://www.alarmeringen.nl/feeds/';
+
             }
         });
 

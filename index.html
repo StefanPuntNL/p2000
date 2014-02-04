@@ -4,7 +4,7 @@
 	<meta charset="utf-8">
 	<title>Alarmeringen Kennemerland</title>
 
-	<link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.1.0/css/bootstrap.min.css">
+	<link rel="stylesheet" href="css/bootstrap.min.css">
 	<style>
 		img {
 			width: 32px;
@@ -17,6 +17,14 @@
 			width: 300px;
 			float: left;
 		}
+		
+		select.form-control:nth-of-type(2) {
+			margin-left: 1.2em;
+		}
+		button {
+			margin-left: 0.8em;
+		}
+
 	</style>
 	<script src="http://code.jquery.com/jquery-1.10.1.min.js"></script>
 </head>
@@ -29,6 +37,31 @@
 					<div class="form-group">
 						<select id="regio" class="form-control">
 							<option value="all">Alle regios</option>
+							<option value="amsterdam-amstelland">Amsterdam-Amstelland</option>
+							<option value="brabant-noord">Brabant-Noord</option>
+							<option value="brabant-zuidoost">Brabant-Zuidoost</option>
+							<option value="drenthe">Drenthe</option>
+							<option value="flevoland">Flevoland</option>
+							<option value="friesland">Friesland</option>
+							<option value="gelderland-midden">Gelderland Midden</option>
+							<option value="gelderland-zuid">Gelderland Zuid</option>
+							<option value="gooi-en-vechtstreek">Gooi en Vechtstreek</option>
+							<option value="groningen">Groningen</option>
+							<option value="haaglanden">Haaglanden</option>
+							<option value="hollands-midden">Hollands Midden</option>
+							<option value="ijsselland">IJsselland</option>
+							<option value="kennemerland">Kennemerland</option>
+							<option value="limburg-noord">Limburg Noord</option>
+							<option value="limburg-zuid">Limburg Zuid</option>
+							<option value="midden-en-west-brabant">Midden- en West-Brabant</option>
+							<option value="noord-en-oost-gelderland">Noord- en Oost-Gelderland</option>
+							<option value="noord-holland-noord">Noord-Holland Noord</option>
+							<option value="rotterdam-rijnmond">Rotterdam-Rijnmond</option>
+							<option value="twente">Twente</option>
+							<option value="utrecht">Utrecht</option>
+							<option value="zaanstreek-waterland">Zaanstreek-Waterland</option>
+							<option value="zeeland">Zeeland</option>
+							<option value="zuid-holland-zuid">Zuid-Holland Zuid</option>
 						</select>
 						<select id="discipline" class="form-control">
 							<option value="all">Alle Disciplines</option>
@@ -37,7 +70,8 @@
 							<option value="knrm">KNRM</option>
 							<option value="politie">Politie</option>
 						</select>
-						<button id="filter" type="button" class="btn btn-info">filter</button>
+						<button id="filter" type="button" class="btn btn-info">filter <span class="glyphicon glyphicon-filter"></span></button>
+						<button id="refresh" type="button" class="btn btn-success"><span class="glyphicon glyphicon-refresh"></span></button>
 					</div>
 				</form>
 				
@@ -57,7 +91,7 @@
 		</div>
 	</div>
 
-	<script src="//netdna.bootstrapcdn.com/bootstrap/3.1.0/js/bootstrap.min.js"></script>
+	<script src="js/bootstrap.min.js"></script>
 	<script src="js/script.js"></script>
 </body>
 </html>
