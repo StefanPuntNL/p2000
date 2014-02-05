@@ -1,7 +1,16 @@
 $(document).ready(function() {
 	    var startUrl = ' http://www.alarmeringen.nl/feeds/all.rss';
-		var url = 'http://www.alarmeringen.nl/feeds/';
-			
+		var baseUrl = 'http://www.alarmeringen.nl/feeds/';
+		var regio = 'all';
+        var discipline = 'all';
+
+        $('#regio').change(function() {
+            regio = $(this).val();
+        });
+
+        $('#discipline').change(function() {
+            discipline = $(this).val();
+        });
 
         // Accepts a url and a callback function to run.
 		function requestCrossDomain(site, callback) {
@@ -31,14 +40,33 @@ $(document).ready(function() {
 		    }
 		}
 
+        function startLoading() {
+            var i = 1;
+
+            $('.progress').show();
+            
+            setInterval(function () {
+                if(i > 100) {
+                    return;
+                } else {
+                    $('.progress-bar').width(i+'%');
+                    i++;
+                }
+            }, 10);
+        }
+
+        function removeItems() {
+            $('.alarm-item').animate({
+                opacity: 0
+                }, 1000, function() {
+                $(this).remove();
+            });
+            startLoading();
+        }
+
 
 		function readFeed(limit, url) {
-            $('.alarm-item').animate(
-                {
-                    opacity: 0
-                }, 1000, function() {
-                    $(this).remove();
-            });
+            removeItems();
 
     		requestCrossDomain(url, function (result) {
         		var num = 1;
@@ -86,7 +114,7 @@ $(document).ready(function() {
                 			type = 'politie';
                 		}
                 		
-                		$('tbody').append('<tr class="alarm-item"><td><img src="img/'+type+'.png" alt="'+type+'"/></td><td>'+d+'-'+m+'-'+y+'</td><td>'+h+':'+min+'</td><td>'+title+'</td><td>'+description+'</td></tr>');
+                		$('tbody').append('<tr class="alarm-item"><td><img src="img/'+type+'.png" alt="'+type+'"/></td><td>'+d+'-'+m+'-'+y+'</td><td>'+h+':'+min+'</td><td><span class="animate glyphicon glyphicon-asterisk"></span>'+title+'</td><td>'+description+'</td></tr>');
 
                 		num++;
             		}
@@ -99,33 +127,44 @@ $(document).ready(function() {
         $('#filter').click(function(e) {
             e.preventDefault();
             
-            if($('#regio').val() == 'all' && $('#discipline').val() == 'all') {
-
+            switch(true) {
+                case (regio == 'all' && discipline == 'all'):
                 readFeed(15, startUrl);
+                break;
 
-            } else if($('#regio').val() !== 'all' && $('#discipline').val() == 'all') {
+                case (regio !== 'all' && discipline == 'all'):
+                readFeed(15, baseUrl+'region/'+regio+'.rss');
+                break;
 
-                var regio = $('#regio').val();
-                url += 'region/'+ regio + '.rss';
-                readFeed(15, url);
-                url = 'http://www.alarmeringen.nl/feeds/';
+                case (regio == 'all' && discipline !== 'all'):
+                readFeed(15, baseUrl+'discipline/'+discipline+'.rss');
+                break;
 
-            } else if($('#regio').val() == 'all' && $('#discipline').val() !== 'all') {
-
-                var discipline = $('#discipline').val();
-                url += 'discipline/'+ discipline + '.rss';
-                readFeed(15, url);
-                url = 'http://www.alarmeringen.nl/feeds/';
-
-            } else if($('#regio').val() !== 'all' && $('#discipline').val() !== 'all') {
-
-                var regio = $('#regio').val();
-                var discipline = $('#discipline').val();
-                url += 'region/'+ regio + '/'+ discipline +'.rss';
-                readFeed(15, url);
-                url = 'http://www.alarmeringen.nl/feeds/';
-
+                case (regio !== 'all' && discipline !== 'all'):
+                readFeed(15, baseUrl+'region/'+regio+'/'+discipline+'.rss');
+                break;
             }
         });
 
+        $('#refresh').click(function(e) {
+            e.preventDefault();
+            
+            switch(true) {
+                case (regio == 'all' && discipline == 'all'):
+                readFeed(15, startUrl);
+                break;
+
+                case (regio !== 'all' && discipline == 'all'):
+                readFeed(15, baseUrl+'region/'+regio+'.rss');
+                break;
+
+                case (regio == 'all' && discipline !== 'all'):
+                readFeed(15, baseUrl+'discipline/'+discipline+'.rss');
+                break;
+
+                case (regio !== 'all' && discipline !== 'all'):
+                readFeed(15, baseUrl+'region/'+regio+'/'+discipline+'.rss');
+                break;
+            }
+        });
 });
