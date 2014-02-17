@@ -69,6 +69,9 @@
 		button {
 			margin-left: 0.8em;
 		}
+		optgroup {
+			border-bottom: 1px solid #999;
+		}
 
 	</style>
 	<script src="http://code.jquery.com/jquery-1.10.1.min.js"></script>
@@ -82,31 +85,55 @@
 					<div class="form-group">
 						<select id="regio" class="form-control">
 							<option value="all">Alle regios</option>
-							<option value="amsterdam-amstelland">Amsterdam-Amstelland</option>
-							<option value="brabant-noord">Brabant-Noord</option>
-							<option value="brabant-zuidoost">Brabant-Zuidoost</option>
-							<option value="drenthe">Drenthe</option>
-							<option value="flevoland">Flevoland</option>
-							<option value="friesland">Friesland</option>
-							<option value="gelderland-midden">Gelderland Midden</option>
-							<option value="gelderland-zuid">Gelderland Zuid</option>
-							<option value="gooi-en-vechtstreek">Gooi en Vechtstreek</option>
-							<option value="groningen">Groningen</option>
-							<option value="haaglanden">Haaglanden</option>
-							<option value="hollands-midden">Hollands Midden</option>
-							<option value="ijsselland">IJsselland</option>
-							<option value="kennemerland">Kennemerland</option>
-							<option value="limburg-noord">Limburg Noord</option>
-							<option value="limburg-zuid">Limburg Zuid</option>
-							<option value="midden-en-west-brabant">Midden- en West-Brabant</option>
-							<option value="noord-en-oost-gelderland">Noord- en Oost-Gelderland</option>
-							<option value="noord-holland-noord">Noord-Holland Noord</option>
-							<option value="rotterdam-rijnmond">Rotterdam-Rijnmond</option>
-							<option value="twente">Twente</option>
-							<option value="utrecht">Utrecht</option>
-							<option value="zaanstreek-waterland">Zaanstreek-Waterland</option>
-							<option value="zeeland">Zeeland</option>
-							<option value="zuid-holland-zuid">Zuid-Holland Zuid</option>
+							<optgroup label="Drenthe">
+								<option value="drenthe">Drenthe</option>
+							</optgroup>
+							<optgroup label="Flevoland">
+								<option value="flevoland">Flevoland</option>
+							</optgroup>
+							<optgroup label="Friesland">
+								<option value="friesland">Friesland</option>
+							</optgroup>
+							<optgroup label="Gelderland">
+								<option value="noord-en-oost-gelderland">Noord- en Oost-Gelderland</option>
+								<option value="gelderland-midden">Gelderland Midden</option>
+								<option value="gelderland-zuid">Gelderland Zuid</option>
+							</optgroup>
+							<optgroup label="Groningen">
+								<option value="groningen">Groningen</option>
+							</optgroup>
+							<optgroup label="Limburg">
+								<option value="limburg-noord">Limburg Noord</option>
+								<option value="limburg-zuid">Limburg Zuid</option>
+							</optgroup>
+							<optgroup label="Noord-Brabant">
+								<option value="brabant-noord">Brabant-Noord</option>
+								<option value="midden-en-west-brabant">Midden- en West-Brabant</option>
+								<option value="brabant-zuidoost">Brabant-Zuidoost</option>
+							</optgroup>
+							<optgroup label="Noord-Holland">
+								<option value="amsterdam-amstelland">Amsterdam-Amstelland</option>
+								<option value="kennemerland">Kennemerland</option>
+								<option value="noord-holland-noord">Noord-Holland Noord</option>
+								<option value="zaanstreek-waterland">Zaanstreek-Waterland</option>
+							</optgroup>
+							<optgroup label="Overijssel">
+								<option value="ijsselland">IJsselland</option>
+								<option value="twente">Twente</option>
+							</optgroup>
+							<optgroup label="Utrecht">
+								<option value="gooi-en-vechtstreek">Gooi en Vechtstreek</option>
+								<option value="utrecht">Utrecht</option>
+							</optgroup>
+							<optgroup label="Zeeland">
+								<option value="zeeland">Zeeland</option>
+							</optgroup>
+							<optgroup label="Zuid-Holland">
+								<option value="haaglanden">Haaglanden</option>
+								<option value="hollands-midden">Hollands Midden</option>
+								<option value="rotterdam-rijnmond">Rotterdam-Rijnmond</option>
+								<option value="zuid-holland-zuid">Zuid-Holland Zuid</option>
+							</optgroup>
 						</select>
 						<select id="discipline" class="form-control">
 							<option value="all">Alle Disciplines</option>
@@ -120,27 +147,14 @@
 					</div>
 				</form>
 				
-				<div class="table-responsive">
-  					<table class="table table-condensed table-striped table-bordered">
-  						<thead>
-  							<tr>
-  								<th></th><th>Datum</th><th>Tijd</th><th>Titel</th><th>Melding</th>
-  							</tr>	
-  						</thead>
-    					<tbody>
+				<ul class="list-group">
 
-    					</tbody>	
-  					</table>
-  					<div class="progress progress-striped active">
-  						<div class="progress-bar"  role="progressbar" aria-valuemin="0" aria-valuemax="100">
-  						</div>
-					</div>
-				</div>
+				</ul>
 			</div>
 		</div>
 	</div>
 
 	<script src="js/bootstrap.min.js"></script>
-	<script src="js/script.js"></script>
+	<script src="js/script2.js"></script>
 </body>
 </html>
